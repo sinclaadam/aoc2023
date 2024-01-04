@@ -17,9 +17,8 @@ func Run() {
 	fmt.Println(fmt.Sprintf("%d %s", len(lines), "lines loaded from file"))
 
 	total := 0
-
-	for i := 0; i < len(lines); i++ {
-		number := ExtractNumbers(lines[i])
+	for _, line := range lines {
+		number := ExtractNumbers(line)
 		num, err := strconv.Atoi(number)
 
 		if err != nil {
@@ -33,20 +32,19 @@ func Run() {
 }
 
 func ExtractNumbers(line string) string {
-	var first uint8 = 0
-	var last uint8 = 0
+	var first rune
+	var last rune
 
-	for i := 0; i < len(line); i++ {
-		c := line[i]
-		if unicode.IsNumber(rune(c)) {
+	for _, r := range line {
+		if unicode.IsNumber(r) {
 			if first == 0 {
-				first = c - '0'
-				last = c - '0'
+				first = r
+				last = r
 			} else {
-				last = c - '0'
+				last = r
 			}
 		}
 	}
 
-	return fmt.Sprintf("%d%d", first, last)
+	return fmt.Sprintf("%c%c", first, last)
 }

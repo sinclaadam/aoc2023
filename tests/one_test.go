@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestExtractNumbers(t *testing.T) {
+func TestOnePartOne(t *testing.T) {
 	var tests = []struct {
 		input  string
 		answer string
@@ -27,7 +27,7 @@ func TestExtractNumbers(t *testing.T) {
 	}
 }
 
-func TestExtractNumbersPartTwo(t *testing.T) {
+func TestOnePartTwo(t *testing.T) {
 	var tests = []struct {
 		input  string
 		answer string

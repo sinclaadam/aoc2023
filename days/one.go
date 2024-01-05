@@ -10,8 +10,8 @@ import (
 
 const maxWindow = 5
 
-func Run() {
-	lines, err := utilities.ReadLines("data/input1a.txt")
+func RunOne() {
+	lines, err := utilities.ReadLines("data/input1.txt")
 
 	if err != nil {
 		panic(err)

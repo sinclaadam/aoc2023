@@ -18,6 +18,16 @@ func RunFourPartOne() {
 	fmt.Println(CalculateWinningPoints(lines))
 }
 
+func RunFourPartTwo() {
+	lines, err := utilities.ReadLines("data/input4.txt")
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(CalculateTotalScratchyCards(lines))
+}
+
 func CalculateWinningPoints(lines []string) int {
 	totalPoints := 0
 
@@ -36,6 +46,38 @@ func CalculateWinningPoints(lines []string) int {
 	}
 
 	return totalPoints
+}
+
+func CalculateTotalScratchyCards(lines []string) int {
+	copies := make(map[int]int)
+	for i, _ := range lines {
+		copies[i] = 1
+	}
+
+	for i, line := range lines {
+		winningNumbers := getWinningNumbers(line)
+		scratchyNumbers := getScratchyNumbers(line)
+
+		matchingNumbers := 0
+
+		for _, num := range scratchyNumbers {
+			if slices.Contains(winningNumbers, num) {
+				matchingNumbers++
+			}
+		}
+
+		for j := i + 1; matchingNumbers >= 1; j++ {
+			copies[j] = copies[j] + copies[i]
+			matchingNumbers--
+		}
+	}
+
+	sum := 0
+	for _, v := range copies {
+		sum += v
+	}
+
+	return sum
 }
 
 func getWinningNumbers(line string) []int {

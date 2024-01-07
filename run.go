@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	o.RunFourPartOne()
+	o.RunFourPartTwo()
 }

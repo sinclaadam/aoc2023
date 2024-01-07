@@ -1,7 +1,9 @@
 package main
 
-import o "aoc2023/days"
+import (
+	o "aoc2023/days"
+)
 
 func main() {
-	o.RunThreePartTwo()
+	o.RunFourPartOne()
 }
